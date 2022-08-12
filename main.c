@@ -6,7 +6,7 @@
 /*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 10:01:03 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/12 15:08:28 by epresa-c         ###   ########.fr       */
+/*   Updated: 2022/08/12 15:17:18 by epresa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,27 +136,33 @@ int	create_threads(t_var *v)
 	while (i < v->n_of_phil)
 	{
 		if (pthread_join(v->th[i], NULL) != 0)
-		{
-			free_philos(v);
-			free(v->th);
 			return (EXIT_FAILURE); // chequear estas tres lineas
-		}
 		i++;
 	}
 	return (EXIT_SUCCESS);
 }
 
+// TO MAKE
+int	free_all()
+{
+
+}
+
 int	main(int argc, char **argv)
 {
 	t_var	v;
+	int		ret;
 
 	init_var(argc, argv, &v);
 	if (v.exit_status != 0)
 		return (v.exit_status);
-	if (create_philos(&v) != EXIT_SUCCESS)
-		return (EXIT_FAILURE);
-	if (create_threads(&v) != EXIT_SUCCESS)
-		return (EXIT_FAILURE);
+	ret = create_philos(&v);
+	if (ret == 0)
+		ret = create_threads(&v);
+	free_all();
 	print_var(v);
-	return (0);
+	if (ret == 0)
+		return (0);
+	else
+		return (print_error(ret));
 }
