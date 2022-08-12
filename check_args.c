@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:31:09 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/12 10:52:22 by Emiliano         ###   ########.fr       */
+/*   Updated: 2022/08/12 14:00:03 by epresa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,5 @@ int	check_args(int argc, char **argv, t_var *var)
 		i++;
 	}
 	get_args(argv, var);
-	print_var(var); // to delete, it's just to control and debug
 	return (0);
 }

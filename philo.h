@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 10:41:17 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/12 10:54:01 by Emiliano         ###   ########.fr       */
+/*   Updated: 2022/08/12 14:32:30 by epresa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,35 +28,39 @@
 # define TRUE 1
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
+# define NO 0
+# define YES 1
 
 /* ****************************** STRUCTURES ******************************** */
+
+typedef struct s_philosopher
+{
+	size_t			id;
+	size_t			t_last_meal;
+	size_t			n_meals_eaten;
+	size_t			t_to_die;
+	size_t			t_to_eat;
+	size_t			t_to_sleep;
+	int				*end_simu;
+	pthread_mutex_t	fork;
+	pthread_mutex_t	*fork_right;
+}	t_phillosopher;
 
 typedef struct s_var
 {
 	pthread_t		*th;
+	pthread_t		check_end;
 	t_phillosopher	**philosophers;
-	int				n_of_phil;
-	int				t_to_die;
-	int				t_to_eat;
-	int				t_to_sleep;
-	int				n_meals_to_eat;
+	size_t			n_of_phil;
+	size_t			t_to_die;
+	size_t			t_to_eat;
+	size_t			t_to_sleep;
+	size_t			n_meals_to_eat;
 	int				exit_status;
-	int				t_start_simu;
+	size_t			t_start_simu;
 	int				end_simu;
 	pthread_mutex_t	print;
 }	t_var;
-
-typedef struct s_philosopher
-{
-	int				id;
-	int				t_last_meal;
-	int				n_meals_eaten;
-	int				t_to_eat;
-	int				t_to_sleep;
-	int				fork;
-	pthread_mutex_t	fork;
-	pthread_mutex_t	*fork_right;
-}	t_phillosopher;
 
 /* ******************************* FUNCTIONS ******************************** */
 
@@ -76,6 +80,6 @@ int				check_args(int argc, char **argv, t_var *var);
 
 int				ft_isdigit(int c);
 size_t			ft_strlen(const char *s);
-void			print_var(t_var *var);
+void			print_var(t_var var);
 
 #endif
