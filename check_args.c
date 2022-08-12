@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:31:09 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/10 16:30:10 by epresa-c         ###   ########.fr       */
+/*   Updated: 2022/08/12 10:52:22 by Emiliano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	get_args(char **argv, t_var *var)
 {
 	var->exit_status = 0;
 	var->n_of_phil = (int)fn_atoll(argv[1]);
-	var->time_to_die = (int)fn_atoll(argv[2]);
-	var->time_to_eat = (int)fn_atoll(argv[3]);
-	var->time_to_sleep = (int)fn_atoll(argv[4]);
+	var->t_to_die = (int)fn_atoll(argv[2]);
+	var->t_to_eat = (int)fn_atoll(argv[3]);
+	var->t_to_sleep = (int)fn_atoll(argv[4]);
 	if (argv[5])
 		var->n_meals_to_eat = (int)fn_atoll(argv[5]);
 	else

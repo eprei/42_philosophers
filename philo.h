@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 10:41:17 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/10 16:30:15 by epresa-c         ###   ########.fr       */
+/*   Updated: 2022/08/12 10:54:01 by Emiliano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,29 @@
 
 typedef struct s_var
 {
-	int	n_of_phil;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	n_meals_to_eat;
-	int	exit_status;
+	pthread_t		*th;
+	t_phillosopher	**philosophers;
+	int				n_of_phil;
+	int				t_to_die;
+	int				t_to_eat;
+	int				t_to_sleep;
+	int				n_meals_to_eat;
+	int				exit_status;
+	int				t_start_simu;
+	int				end_simu;
+	pthread_mutex_t	print;
 }	t_var;
 
 typedef struct s_philosopher
 {
-	int	id;
-	int	t_last_meal;
-	int	n_meals_eaten;
+	int				id;
+	int				t_last_meal;
+	int				n_meals_eaten;
+	int				t_to_eat;
+	int				t_to_sleep;
+	int				fork;
+	pthread_mutex_t	fork;
+	pthread_mutex_t	*fork_right;
 }	t_phillosopher;
 
 /* ******************************* FUNCTIONS ******************************** */
