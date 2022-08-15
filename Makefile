@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+         #
+#    By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 10:41:20 by epresa-c          #+#    #+#              #
-#    Updated: 2022/08/10 13:37:36 by epresa-c         ###   ########.fr        #
+#    Updated: 2022/08/13 10:39:19 by Emiliano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-SRCS = main.c check_args.c utiles.c
+SRCS = main.c check_args.c utiles.c print.c
 
 OBJ = $(SRCS:.c=.o)
 

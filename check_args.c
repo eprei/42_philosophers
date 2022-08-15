@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:31:09 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/12 14:00:03 by epresa-c         ###   ########.fr       */
+/*   Updated: 2022/08/13 14:00:02 by Emiliano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	check_int_overflow(char *argv)
 	return (TRUE);
 }
 
-int	check_single_arg(char *argv_i)
+int	check_single_arg(char *argv_i, int k)
 {
 	int	j;
 
@@ -56,13 +56,13 @@ int	check_single_arg(char *argv_i)
 	{
 		if ((ft_isdigit(argv_i[j]) == FALSE && j != 0) || (j == 0 && \
 			ft_isdigit(argv_i[j]) == FALSE && argv_i[j] != '-'))
-			return (print_error(2));
+			return (print_error(ERROR_NON_NUMERICAL_ARG));
 		j++;
 	}
 	if (check_int_overflow(argv_i) == TRUE)
-		return (print_error(3));
-	if (fn_atoll(argv_i) < 0)
-		return (print_error(4));
+		return (print_error(ERROR_INT_OVERFLOW));
+	if (fn_atoll(argv_i) <= 0 && k == 1)
+		return (print_error(ERROR_NUM_PHILOS));
 	return (EXIT_SUCCESS);
 }
 
@@ -90,11 +90,11 @@ int	check_args(int argc, char **argv, t_var *var)
 		return (print_error(1));
 	while (argv[i])
 	{
-		ret_checker = check_single_arg(argv[i]);
+		ret_checker = check_single_arg(argv[i], i);
 		if (ret_checker != EXIT_SUCCESS)
 			return (ret_checker);
 		i++;
 	}
 	get_args(argv, var);
-	return (0);
+	return (EXIT_SUCCESS);
 }
