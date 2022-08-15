@@ -6,7 +6,7 @@
 /*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:24:48 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/15 11:44:15 by epresa-c         ###   ########.fr       */
+/*   Updated: 2022/08/15 14:49:30 by epresa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,21 @@
 
 void	sleeping(t_philosopher *philo)
 {
-	size_t	actual_time;
+	size_t	time;
 
-	actual_time = get_time();
 	pthread_mutex_lock(philo->print);
-	printf("%lu %lu is sleeping\n", actual_time - philo->start_simu, philo->id);
+	time = get_time();
+	printf("%lu %lu is sleeping\n", time - philo->start_simu, philo->id);
 	pthread_mutex_unlock(philo->print);
-	philo->t_last_meal = actual_time;
-	while (get_time() - philo->start_simu < philo->t_to_sleep)
-		usleep(philo->t_to_sleep * 1000 / 200);
+	usleep(philo->t_to_sleep * 1000);
+	// while (get_time() - philo->start_simu < philo->t_to_sleep)
+		// usleep(philo->t_to_sleep * 1000 / 200);
 }
 
 void	thinking(t_philosopher *philo)
 {
-	size_t	actual_time;
-
-	actual_time = get_time();
 	pthread_mutex_lock(philo->print);
-	printf("%lu %lu is thinking\n", actual_time - philo->start_simu, philo->id);
+	printf("%lu %lu is thinking\n", get_time() - philo->start_simu, philo->id);
 	pthread_mutex_unlock(philo->print);
 }
 
@@ -39,18 +36,19 @@ void	eating(t_philosopher *philo)
 {
 	size_t	actual_time;
 
-	actual_time = get_time();
 	pthread_mutex_lock(&philo->fork);
 	printf("%lu %lu has taken a fork\n", \
-	actual_time - philo->start_simu, philo->id);
+	get_time() - philo->start_simu, philo->id);
 	pthread_mutex_lock(philo->fork_left);
+	actual_time = get_time();
 	pthread_mutex_lock(philo->print);
 	printf("%lu %lu is eating\n", actual_time - philo->start_simu, philo->id);
 	pthread_mutex_unlock(philo->print);
-	while (get_time() - philo->start_simu < philo->t_to_eat)
-		usleep(philo->t_to_eat * 1000 / 200);
-	pthread_mutex_unlock(&philo->fork);
+	usleep(philo->t_to_eat * 1000);
+	// while ((get_time() - philo->start_simu) < philo->t_to_eat)
+		// usleep(philo->t_to_eat * 1000 / 200);
 	pthread_mutex_unlock(philo->fork_left);
+	pthread_mutex_unlock(&philo->fork);
 	philo->t_last_meal = actual_time;
 	philo->n_meals_eaten++;
 }

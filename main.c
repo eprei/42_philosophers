@@ -6,7 +6,7 @@
 /*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 10:01:03 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/15 11:44:38 by epresa-c         ###   ########.fr       */
+/*   Updated: 2022/08/15 13:40:29 by epresa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	ret = create_philos(&v);
 	if (ret == EXIT_SUCCESS)
 		ret = create_threads(&v);
-//	print_var(v); // to delete
+	print_var(v); // to delete
 	free_all(&v);
 	if (ret == EXIT_SUCCESS)
 		return (EXIT_SUCCESS);
