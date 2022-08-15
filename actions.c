@@ -6,7 +6,7 @@
 /*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:24:48 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/15 14:49:30 by epresa-c         ###   ########.fr       */
+/*   Updated: 2022/08/15 17:16:52 by epresa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	*routine(void *arg)
 
 	philo = (t_philosopher *)arg;
 	if (philo->id % 2 == 0)
-		usleep(15);
-	while (*philo->end_simu == NO && philo->n_meals_eaten < 3)
+		usleep(20);
+	while (*philo->end_simu == NO && philo->n_meals_eaten < 4)
 	{
 		eating(philo);
 		if (*philo->end_simu == YES)

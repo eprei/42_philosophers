@@ -6,7 +6,7 @@
 /*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:27:04 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/15 15:11:19 by epresa-c         ###   ########.fr       */
+/*   Updated: 2022/08/15 17:26:02 by epresa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,26 @@ int	malloc_threads(t_var *v)
 	return (EXIT_SUCCESS);
 }
 
-int	everyone_ate(t_var *v)
+void	check_everyone_ate(t_var *v)
 {
 	size_t	i;
-
-	i = 0;
-	while (i < v->n_of_phil)
+	write(1, "\n\tIS WORK\n",8);
+	while (v->end_simu == NO)
 	{
-		if (v->philosophers[i]->n_meals_to_eat - v->philosophers[i]->n_meals_eaten > 0)
-			return (NO);
-		i++;
+		i = 0;
+		while (i < v->n_of_phil)
+		{
+			printf("i = %lu\n", i);
+			if (((v->philosophers[i]->n_meals_to_eat - v->philosophers[i]->n_meals_eaten)) > 0)
+				return ;
+			else if (i + 1 == v->n_of_phil)
+			{
+				v->end_simu = YES;
+				return ;
+			}
+			i++;
+		}
 	}
-	return (YES);
 }
 
 void	*check_end(void *arg)
@@ -44,10 +52,10 @@ void	*check_end(void *arg)
 	size_t	time;
 
 	v = (t_var *)arg;
-	while (v->end_simu != YES)
+	while (v->end_simu == NO)
 	{
 		i = 0;
-		while (i < v->n_of_phil && v->end_simu != YES)
+		while (i < v->n_of_phil && v->end_simu == NO)
 		{
 			time = get_time();
 			if ((time - v->philosophers[i]->t_last_meal) > v->philosophers[i]->t_to_die)
@@ -57,8 +65,8 @@ void	*check_end(void *arg)
 				pthread_mutex_unlock(&v->print);
 				v->end_simu = YES;
 			}
-			else if (everyone_ate(v) == YES)
-				v->end_simu = YES;
+			if (v->n_meals_to_eat > -1)
+				check_everyone_ate(v);
 			i++;
 		}
 	}
