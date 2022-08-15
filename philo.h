@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 10:41:17 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/13 14:59:30 by Emiliano         ###   ########.fr       */
+/*   Updated: 2022/08/15 11:32:02 by epresa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,13 @@ int				print_error(int exit_status);
 // main.c
 
 void			init_var(int argc, char **argv, t_var *v);
+void			free_all(t_var *v);
+
+// philos.c
+
+int				create_philos(t_var *v);
+void			init_philos(t_var *v);
+void			free_philos(t_var *v);
 
 // check_args.c
 
@@ -89,8 +96,22 @@ int				check_int_overflow(char *argv);
 int				check_single_arg(char *argv_i, int k);
 int				check_args(int argc, char **argv, t_var *var);
 
+// actions.c
+
+void			sleeping(t_philosopher *philo);
+void			thinking(t_philosopher *philo);
+void			eating(t_philosopher *philo);
+void			*routine(void *arg);
+
+// threads.c
+int				malloc_threads(t_var *v);
+void			init_mutex(t_var *v);
+void			destroy_mutex(t_var *v);
+int				create_threads(t_var *v);
+
 // utiles.c
 
+size_t			get_time(void);
 int				ft_isdigit(int c);
 size_t			ft_strlen(const char *s);
 void			print_var(t_var var);
