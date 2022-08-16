@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utiles.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:32:41 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/15 11:33:12 by epresa-c         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:30:19 by Emiliano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,16 @@ void	print_var(t_var var)
 	size_t	i;
 
 	i = 0;
-	printf("N of phil = %zu\n", var.n_of_phil);
+	printf("\nN of phil = %zu\n", var.n_of_phil);
 	printf("time to die = %zu\n", var.t_to_die);
 	printf("time to eat = %zu\n", var.t_to_eat);
 	printf("time to sleep = %zu\n", var.t_to_sleep);
-	printf("N meals to eat = %zu\n", var.n_meals_to_eat);
+	printf("N meals to eat = %d\n", var.n_meals_to_eat);
 	printf("time start simu = %lu\n", var.t_start_simu);
 	printf("end simu = %d\n", var.end_simu);
 	while (i < var.n_of_phil)
 	{
-		printf("\n\tPhilo %zu t_last_meal %zu, n_meals_to_eat %zu n_meals_eaten %zu,\
+		printf("\n\tPhilo %zu t_last_meal %zu, n_meals_to_eat %d n_meals_eaten %d,\
  t_to_die %zu, t_to_eat %zu, t_to_sleep %zu\n", var.philosophers[i]->id, \
 		var.philosophers[i]->t_last_meal, var.philosophers[i]->n_meals_to_eat, \
 		var.philosophers[i]->n_meals_eaten, var.philosophers[i]->t_to_die, \

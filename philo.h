@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 10:41:17 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/15 11:32:02 by epresa-c         ###   ########.fr       */
+/*   Updated: 2022/08/16 16:14:32 by Emiliano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ typedef struct s_philosopher
 {
 	size_t			id;
 	size_t			t_last_meal;
-	size_t			n_meals_to_eat;
-	size_t			n_meals_eaten;
+	int				n_meals_to_eat;
+	int				n_meals_eaten;
 	size_t			t_to_die;
 	size_t			t_to_eat;
 	size_t			t_to_sleep;
@@ -65,7 +65,7 @@ typedef struct s_var
 	size_t			t_to_die;
 	size_t			t_to_eat;
 	size_t			t_to_sleep;
-	size_t			n_meals_to_eat;
+	int				n_meals_to_eat;
 	size_t			t_start_simu;
 	int				exit_status;
 	int				end_simu;
@@ -76,6 +76,7 @@ typedef struct s_var
 
 // print.c
 
+void			print_die(t_var *v, size_t time, size_t i);
 int				print_error(int exit_status);
 
 // main.c

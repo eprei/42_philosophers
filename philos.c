@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philos.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:29:33 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/15 11:30:28 by epresa-c         ###   ########.fr       */
+/*   Updated: 2022/08/16 14:34:34 by Emiliano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	init_philos(t_var *v)
 	}
 	if (v->n_of_phil > 1)
 		v->philosophers[0]->fork_left = \
-		&v->philosophers[v->n_of_phil - 1]->fork;
+		&v->philosophers[i - 1]->fork;
 	else
 		v->philosophers[0]->fork_left = &v->philosophers[0]->fork;
 }

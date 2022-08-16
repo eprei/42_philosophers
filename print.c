@@ -6,11 +6,20 @@
 /*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 10:41:17 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/13 14:01:30 by Emiliano         ###   ########.fr       */
+/*   Updated: 2022/08/16 16:14:37 by Emiliano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	print_die(t_var *v, size_t time, size_t i)
+{
+	pthread_mutex_lock(&v->print);
+	printf("%lu %lu died\n", time - v->t_start_simu, \
+	v->philosophers[i]->id);
+	pthread_mutex_unlock(&v->print);
+	v->end_simu = YES;
+}
 
 int	print_error(int exit_status)
 {

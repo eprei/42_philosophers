@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:27:04 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/15 17:26:02 by epresa-c         ###   ########.fr       */
+/*   Updated: 2022/08/16 16:15:08 by Emiliano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,21 @@ int	malloc_threads(t_var *v)
 void	check_everyone_ate(t_var *v)
 {
 	size_t	i;
-	write(1, "\n\tIS WORK\n",8);
+
 	while (v->end_simu == NO)
 	{
 		i = 0;
 		while (i < v->n_of_phil)
 		{
-			printf("i = %lu\n", i);
-			if (((v->philosophers[i]->n_meals_to_eat - v->philosophers[i]->n_meals_eaten)) > 0)
+			if (((v->philosophers[i]->n_meals_to_eat - \
+			v->philosophers[i]->n_meals_eaten)) > 0)
 				return ;
 			else if (i + 1 == v->n_of_phil)
 			{
+				pthread_mutex_lock(&v->print);
+				write(1, "\n\teverybody ates\n\n", 16);
+				pthread_mutex_unlock(&v->print);
 				v->end_simu = YES;
-				return ;
 			}
 			i++;
 		}
@@ -52,20 +54,16 @@ void	*check_end(void *arg)
 	size_t	time;
 
 	v = (t_var *)arg;
-	while (v->end_simu == NO)
+	while (v->end_simu == NO && v->n_of_phil > 1)
 	{
 		i = 0;
 		while (i < v->n_of_phil && v->end_simu == NO)
 		{
 			time = get_time();
-			if ((time - v->philosophers[i]->t_last_meal) > v->philosophers[i]->t_to_die)
-			{
-				pthread_mutex_lock(&v->print);
-				printf("%lu %lu died\n", time - v->t_start_simu, v->philosophers[i]->id);
-				pthread_mutex_unlock(&v->print);
-				v->end_simu = YES;
-			}
-			if (v->n_meals_to_eat > -1)
+			if ((time - v->philosophers[i]->t_last_meal) > v->t_to_die)
+				print_die(v, time, i);
+			else if (v->n_meals_to_eat > -1 && \
+			v->end_simu == NO && v->n_meals_to_eat > 1)
 				check_everyone_ate(v);
 			i++;
 		}

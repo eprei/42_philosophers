@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 10:01:03 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/15 17:24:34 by epresa-c         ###   ########.fr       */
+/*   Updated: 2022/08/16 15:53:57 by Emiliano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	ret = create_philos(&v);
 	if (ret == EXIT_SUCCESS)
 		ret = create_threads(&v);
-	print_var(v); // to delete
+	//print_var(v); // to delete
 	free_all(&v);
 	if (ret == EXIT_SUCCESS)
 		return (EXIT_SUCCESS);
@@ -36,7 +36,6 @@ void	init_var(int argc, char **argv, t_var *v)
 	v->exit_status = check_args(argc, argv, v);
 	if (v->exit_status != 0)
 		return ;
-	v->th = NULL;
 	v->check_end = NULL;
 	v->philosophers = NULL;
 	v->t_start_simu = get_time();
