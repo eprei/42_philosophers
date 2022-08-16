@@ -6,7 +6,7 @@
 /*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:31:09 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/13 14:00:02 by Emiliano         ###   ########.fr       */
+/*   Updated: 2022/08/16 16:41:18 by Emiliano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	check_single_arg(char *argv_i, int k)
 		return (print_error(ERROR_INT_OVERFLOW));
 	if (fn_atoll(argv_i) <= 0 && k == 1)
 		return (print_error(ERROR_NUM_PHILOS));
+	if (fn_atoll(argv_i) < 0)
+		return (print_error(ERROR_ARG_NEGATIVE));
 	return (EXIT_SUCCESS);
 }
 

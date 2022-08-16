@@ -6,7 +6,7 @@
 /*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:32:41 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/16 12:30:19 by Emiliano         ###   ########.fr       */
+/*   Updated: 2022/08/16 20:17:38 by Emiliano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,13 @@ void	print_var(t_var var)
 		var.philosophers[i]->t_to_eat, var.philosophers[i]->t_to_sleep);
 		i++;
 	}
+}
+
+void	usleep_splited_to_avoid_deadblock(void)
+{
+	size_t	time_start;
+
+	time_start = get_time();
+	while ((get_time() - time_start) < 2)
+		usleep(2 * 1000 / 200);
 }

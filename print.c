@@ -6,7 +6,7 @@
 /*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 10:41:17 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/16 16:14:37 by Emiliano         ###   ########.fr       */
+/*   Updated: 2022/08/16 19:39:20 by Emiliano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ int	print_error(int exit_status)
 	else if (exit_status == ERROR_PTHREAD_CREATE)
 		printf("Error when executing the pthread_create function\n");
 	else if (exit_status == ERROR_PTHREAD_JOIN)
-		printf("Error when executing the pthread_join function\n");\
+		printf("Error when executing the pthread_join function\n");
+	else if (exit_status == ERROR_ARG_NEGATIVE)
+		printf("Error: the argument cannot be negative\n");
+	else if (exit_status == ERROR_DETACHING_THREAD)
+		printf("Error while while detaching the thread\n");
 	return (exit_status);
 }

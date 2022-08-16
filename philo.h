@@ -6,7 +6,7 @@
 /*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 10:41:17 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/16 16:14:32 by Emiliano         ###   ########.fr       */
+/*   Updated: 2022/08/16 20:17:52 by Emiliano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@
 # define ERROR_MALLOC 5
 # define ERROR_PTHREAD_CREATE 6
 # define ERROR_PTHREAD_JOIN 7
-
+# define ERROR_ARG_NEGATIVE 8
+# define ERROR_DETACHING_THREAD 9
 /* ****************************** STRUCTURES ******************************** */
 
 typedef struct s_philosopher
@@ -83,6 +84,7 @@ int				print_error(int exit_status);
 
 void			init_var(int argc, char **argv, t_var *v);
 void			free_all(t_var *v);
+void			detach_threads(t_var *v);
 
 // philos.c
 
@@ -110,11 +112,17 @@ void			init_mutex(t_var *v);
 void			destroy_mutex(t_var *v);
 int				create_threads(t_var *v);
 
+// check_end.c
+
+void			check_everyone_ate(t_var *v);
+void			*check_end(void *arg);
+
 // utiles.c
 
 size_t			get_time(void);
 int				ft_isdigit(int c);
 size_t			ft_strlen(const char *s);
 void			print_var(t_var var);
+void			usleep_splited_to_avoid_deadblock(void);
 
 #endif
