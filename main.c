@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 10:01:03 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/16 20:21:22 by Emiliano         ###   ########.fr       */
+/*   Updated: 2022/08/18 13:59:48 by epresa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,6 @@ void	init_var(int argc, char **argv, t_var *v)
 	v->philosophers = NULL;
 	v->t_start_simu = get_time();
 	v->end_simu = NO;
-}
-
-void	detach_threads(t_var *v)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < v->n_of_phil)
-	{
-		if ((pthread_detach(v->th[i])) != 0)
-			print_error(ERROR_DETACHING_THREAD);
-		i++;
-	}
 }
 
 void	free_all(t_var *v)

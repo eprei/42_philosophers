@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utiles.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 13:32:41 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/16 20:17:38 by Emiliano         ###   ########.fr       */
+/*   Updated: 2022/08/18 12:32:43 by epresa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,8 @@ void	print_var(t_var var)
 	}
 }
 
-void	usleep_splited_to_avoid_deadblock(void)
+void	usleep_splited_to_avoid_deadblock(size_t time_start)
 {
-	size_t	time_start;
-
-	time_start = get_time();
-	while ((get_time() - time_start) < 2)
-		usleep(2 * 1000 / 200);
+	while ((get_time() - time_start) < 10)
+		usleep(10 * 1000 / 200);
 }

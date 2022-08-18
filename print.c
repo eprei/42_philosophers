@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 10:41:17 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/16 19:39:20 by Emiliano         ###   ########.fr       */
+/*   Updated: 2022/08/18 14:26:48 by epresa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,23 @@
 
 void	print_die(t_var *v, size_t time, size_t i)
 {
+	pthread_mutex_lock(&v->end);
+	v->end_simu = YES;
+	pthread_mutex_unlock(&v->end);
 	pthread_mutex_lock(&v->print);
 	printf("%lu %lu died\n", time - v->t_start_simu, \
 	v->philosophers[i]->id);
 	pthread_mutex_unlock(&v->print);
-	v->end_simu = YES;
+}
+
+void	print_eating(t_philosopher *philo, size_t actual_time)
+{
+	pthread_mutex_lock(philo->print);
+	printf("%lu %lu has taken a fork\n", \
+	actual_time - philo->start_simu, philo->id);
+	printf("%lu %lu is eating\n", \
+	actual_time - philo->start_simu, philo->id);
+	pthread_mutex_unlock(philo->print);
 }
 
 int	print_error(int exit_status)

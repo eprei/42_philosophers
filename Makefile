@@ -6,7 +6,7 @@
 #    By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 10:41:20 by epresa-c          #+#    #+#              #
-#    Updated: 2022/08/16 20:06:21 by Emiliano         ###   ########.fr        #
+#    Updated: 2022/08/18 09:46:11 by epresa-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = main.c check_args.c utiles.c print.c actions.c philos.c threads.c check_e
 
 OBJ = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror #-g
 
 CC = gcc
 

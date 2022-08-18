@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 11:27:04 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/16 20:04:53 by Emiliano         ###   ########.fr       */
+/*   Updated: 2022/08/18 12:12:57 by epresa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,12 @@ void	init_mutex(t_var *v)
 
 	i = 0;
 	while (i < v->n_of_phil)
-		pthread_mutex_init(&v->philosophers[i++]->fork, NULL);
+	{
+		pthread_mutex_init(&v->philosophers[i]->fork, NULL);
+		i++;
+	}
 	pthread_mutex_init(&v->print, NULL);
+	pthread_mutex_init(&v->end, NULL);
 }
 
 void	destroy_mutex(t_var *v)
@@ -70,4 +74,5 @@ void	destroy_mutex(t_var *v)
 	while (i < v->n_of_phil)
 		pthread_mutex_destroy(&v->philosophers[i++]->fork);
 	pthread_mutex_destroy(&v->print);
+	pthread_mutex_destroy(&v->end);
 }

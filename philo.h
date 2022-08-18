@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Emiliano <Emiliano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: epresa-c <epresa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 10:41:17 by epresa-c          #+#    #+#             */
-/*   Updated: 2022/08/16 20:17:52 by Emiliano         ###   ########.fr       */
+/*   Updated: 2022/08/18 14:25:47 by epresa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_var
 	int				exit_status;
 	int				end_simu;
 	pthread_mutex_t	print;
+	pthread_mutex_t	end;
 }	t_var;
 
 /* ******************************* FUNCTIONS ******************************** */
@@ -78,13 +79,14 @@ typedef struct s_var
 // print.c
 
 void			print_die(t_var *v, size_t time, size_t i);
+void			print_die2(t_var *v, size_t i);
 int				print_error(int exit_status);
+void			print_eating(t_philosopher *philo, size_t actual_time);
 
 // main.c
 
 void			init_var(int argc, char **argv, t_var *v);
 void			free_all(t_var *v);
-void			detach_threads(t_var *v);
 
 // philos.c
 
@@ -123,6 +125,6 @@ size_t			get_time(void);
 int				ft_isdigit(int c);
 size_t			ft_strlen(const char *s);
 void			print_var(t_var var);
-void			usleep_splited_to_avoid_deadblock(void);
+void			usleep_splited_to_avoid_deadblock(size_t time_start);
 
 #endif
